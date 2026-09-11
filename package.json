@@ -1,0 +1,25 @@
+{
+  "name": "campustrack",
+  "version": "1.0.0",
+  "description": "CampusTrack: Campus Lost & Found Management System (DBMS Capstone Project)",
+  "main": "backend/server.js",
+  "scripts": {
+    "db:start": "node database/start_mysql.js",
+    "db:init": "node database/init_db.js",
+    "server": "node backend/server.js",
+    "client": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend install && npm --prefix frontend run build",
+    "start": "node backend/server.js",
+    "dev": "node start.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "mysql2": "^3.11.5"
+  },
+  "author": "C R Mohul Ram",
+  "license": "MIT"
+}
