@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CampusTrack — Full Project Walkthrough & Viva Guide</title>
+  <style>
+    :root {
+      --bg: #07090e;
+      --card-bg: #0d121d;
+      --border: #1e293b;
+      --gold: #f59e0b;
+      --gold-light: #fbbf24;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --accent: #3b82f6;
+      --success: #10b981;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    header {
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      background: linear-gradient(180deg, #131b2e 0%, var(--card-bg) 100%);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      background: rgba(245, 158, 11, 0.15);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: var(--gold-light);
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    h1 { font-size: 2.25rem; font-weight: 900; color: #fff; margin-bottom: 0.5rem; }
+    .subtitle { color: var(--text-muted); font-size: 1.1rem; }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1.25rem;
+      padding: 1.75rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    h2 { font-size: 1.4rem; color: var(--gold-light); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+    h3 { font-size: 1.1rem; color: #fff; margin: 1.2rem 0 0.5rem 0; }
+    p, li { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 0.5rem; }
+    ul, ol { padding-left: 1.5rem; margin-bottom: 1rem; }
+    strong { color: var(--text); }
+    a { color: var(--gold); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    th { background: #131b2e; color: var(--gold-light); font-weight: 600; }
+    tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+    code, pre {
+      font-family: Consolas, Monaco, "Andale Mono", monospace;
+      background: #05070a;
+      border: 1px solid var(--border);
+      border-radius: 0.5rem;
+    }
+    code { padding: 0.2rem 0.4rem; font-size: 0.85rem; color: #38bdf8; }
+    pre { padding: 1rem; overflow-x: auto; font-size: 0.85rem; color: #e2e8f0; margin: 1rem 0; }
+    .btn-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      background: linear-gradient(135deg, var(--gold) 0%, #d97706 100%);
+      color: #000;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+    .btn-outline {
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
+    .callout {
+      border-left: 4px solid var(--gold);
+      background: rgba(245, 158, 11, 0.08);
+      padding: 1rem 1.25rem;
+      border-radius: 0.5rem;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="badge">DBMS Capstone Project</div>
+      <h1>CAMPUSTRACK</h1>
+      <p class="subtitle">Campus Lost & Found Management System — Full Technical Guide</p>
+      <div class="btn-row" style="justify-content: center;">
+        <a class="btn" href="https://campus-track-rmo1.vercel.app" target="_blank">🌐 Live Vercel App</a>
+        <a class="btn btn-outline" href="https://github.com/mohul-inventions/Campus-Track" target="_blank">📂 GitHub Repository</a>
+      </div>
+    </header>
+
+    <div class="card">
+      <h2>🌟 What is CampusTrack?</h2>
+      <p>
+        <strong>CampusTrack</strong> is an end-to-end full-stack web application designed for university campuses to manage lost and found items. Instead of physical paper logs or informal chat groups, CampusTrack provides a centralized, secure platform backed by a normalized <strong>MySQL 8.0</strong> relational database.
+      </p>
+      <div class="callout">
+        <strong>Key Highlights:</strong>
+        <ul style="margin-top: 0.5rem; margin-bottom: 0;">
+          <li>3NF Normalized Relational Database (8 tables, strict Foreign Keys)</li>
+          <li>Deterministic 100-Point Matching Engine (Category, Location, Color, Brand, Date proximity)</li>
+          <li>ACID Transactions with Pessimistic Row Locking (<code>SELECT ... FOR UPDATE</code>) for claim approval</li>
+          <li>Automated <code>AFTER UPDATE</code> Database Triggers for immutable audit logging</li>
+          <li>5 MySQL Stored Procedures & 3 Materialized Views</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>🔑 Live Demo Credentials</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Role</th>
+            <th>Email</th>
+            <th>Password</th>
+            <th>Capabilities</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Student</strong></td>
+            <td><code>student@campustrack.edu</code></td>
+            <td><code>Campus@Track2026!</code></td>
+            <td>File lost/found reports, search catalog, review match suggestions, submit claims with proof.</td>
+          </tr>
+          <tr>
+            <td><strong>Administrator</strong></td>
+            <td><code>admin@campustrack.edu</code></td>
+            <td><code>Campus@Admin2026!</code></td>
+            <td>Executive KPI dashboard, claim verification modal with ACID transaction approval, audit trail, stored procedures.</td>
+          </tr>
+        </tbody>
+      </table>
+      <p><em>The login screen also includes <strong>1-Click Faculty Viva Credentials</strong> buttons to auto-fill these instantly!</em></p>
+    </div>
+
+    <div class="card">
+      <h2>📐 System Architecture</h2>
+      <ul>
+        <li><strong>Frontend:</strong> React 18 SPA built with Vite, styled using Tailwind CSS (dark obsidian theme with gold accents), responsive navbar, sidebar, and status pipelines. Hosted on <strong>Vercel</strong>.</li>
+        <li><strong>Backend:</strong> Node.js & Express REST API with JWT authentication, bcrypt password hashing, and MySQL connection pooling.</li>
+        <li><strong>Database:</strong> MySQL 8.0 with InnoDB engine, complete normalization (3NF), views, stored procedures, and triggers.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>🎯 100-Point Rule-Based Matching Algorithm</h2>
+      <p>When an item is reported, the backend evaluates all opposite active reports using a weighted formula:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Attribute</th>
+            <th>Weight</th>
+            <th>Rule</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Category Match</td><td>25 pts</td><td>Exact category ID equality</td></tr>
+          <tr><td>Location Match</td><td>25 pts</td><td>Exact campus building/location equality</td></tr>
+          <tr><td>Color Match</td><td>15 pts</td><td>Case-insensitive color or substring match</td></tr>
+          <tr><td>Brand Match</td><td>15 pts</td><td>Case-insensitive brand string equality</td></tr>
+          <tr><td>Description Match</td><td>10 pts</td><td>Keyword overlap in item title and notes</td></tr>
+          <tr><td>Date Proximity</td><td>10 pts</td><td>Within 3 days: 10 pts; within 7 days: 6 pts; within 14 days: 3 pts</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Total: 100 points.</strong> Scores &ge; 50% are suggested to users, and scores &ge; 80% mark candidate items as <code>Matched</code>.</p>
+    </div>
+
+    <div class="card">
+      <h2>🛡️ Faculty Viva Q&A Cheat Sheet</h2>
+      <h3>Q1: How is your database normalized?</h3>
+      <p><strong>Ans:</strong> The schema satisfies <strong>Third Normal Form (3NF)</strong>. All columns are atomic (1NF), all non-key fields depend entirely on the primary key (2NF), and transitive dependencies have been removed by isolating lookup entities like <code>categories</code> and <code>locations</code> into their own tables referenced by foreign keys (3NF).</p>
+
+      <h3>Q2: Why are transactions essential in this project?</h3>
+      <p><strong>Ans:</strong> Approving a claim involves updating three separate tables (<code>claims</code>, <code>found_items</code>, <code>lost_items</code>) and writing an audit log. Without transactions, a crash midway would leave data inconsistent (e.g. found item claimed, but lost item still marked lost). Our ACID transaction uses <code>START TRANSACTION</code> and pessimistic row locking (<code>SELECT ... FOR UPDATE</code>) to guarantee atomic execution and prevent race conditions.</p>
+
+      <h3>Q3: What do the database triggers do?</h3>
+      <p><strong>Ans:</strong> We implemented <code>AFTER UPDATE</code> triggers on <code>lost_items</code>, <code>found_items</code>, and <code>claims</code>. Any time a status changes, the trigger automatically records the old status, new status, timestamp, and user ID into <code>status_audit_log</code>, creating an immutable audit trail at the database engine level.</p>
+    </div>
+
+    <div class="card">
+      <h2>🔗 Links & Resources</h2>
+      <p>• <strong>Live Vercel Application:</strong> <a href="https://campus-track-rmo1.vercel.app" target="_blank">https://campus-track-rmo1.vercel.app</a></p>
+      <p>• <strong>GitHub Source Code:</strong> <a href="https://github.com/mohul-inventions/Campus-Track" target="_blank">https://github.com/mohul-inventions/Campus-Track</a></p>
+      <p>• <strong>Consolidated SQL Script:</strong> <code>database/complete_init.sql</code> (Contains tables, views, stored procedures, triggers, and seed data)</p>
+    </div>
+  </div>
+</body>
+</html>
