@@ -19,11 +19,8 @@ export default function LoginPage() {
     try {
       const res = await login(email, password);
       success(`Welcome back, ${res.user.full_name}!`);
-      if (res.user.role === 'admin') {
-        navigate('/admin/dashboard');
-      } else {
-        navigate('/dashboard');
-      }
+      const target = res.user.role === 'admin' ? '/admin/dashboard' : '/dashboard';
+      navigate(target, { replace: true });
     } catch (err) {
       error(err.message || 'Login failed. Check your email and password.');
     } finally {
@@ -82,7 +79,7 @@ export default function LoginPage() {
           </div>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-4" autoComplete="off">
           <div>
             <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">
               Email Address
@@ -95,6 +92,7 @@ export default function LoginPage() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="student@campustrack.edu"
+                autoComplete="username"
                 className="w-full bg-dark-900 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-gold-500/60 focus:ring-1 focus:ring-gold-500/40 transition-all font-mono"
               />
             </div>
@@ -112,6 +110,7 @@ export default function LoginPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••••••"
+                autoComplete="new-password"
                 className="w-full bg-dark-900 border border-slate-800 rounded-xl py-2.5 pl-10 pr-4 text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-gold-500/60 focus:ring-1 focus:ring-gold-500/40 transition-all font-mono"
               />
             </div>

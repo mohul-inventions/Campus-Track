@@ -23,7 +23,7 @@ export default function AdminLoginPage() {
         return;
       }
       success('Administrator session authenticated.');
-      navigate('/admin/dashboard');
+      navigate('/admin/dashboard', { replace: true });
     } catch (err) {
       error(err.message || 'Admin authentication failed.');
     } finally {
@@ -42,12 +42,12 @@ export default function AdminLoginPage() {
           <p className="text-xs text-slate-400 mt-1">Campus Security & Property Custody Management</p>
         </div>
 
-        <form onSubmit={handleAdminLogin} className="space-y-4">
+        <form onSubmit={handleAdminLogin} className="space-y-4" autoComplete="off">
           <div>
             <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Admin Email</label>
             <div className="relative">
               <Mail className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              <input type="email" required value={email} onChange={e => setEmail(e.target.value)} className="w-full bg-dark-900 border border-slate-800 rounded-xl py-2 pl-9 pr-3 text-xs text-slate-100 font-mono focus:outline-none focus:border-gold-500/60" />
+              <input type="email" required value={email} onChange={e => setEmail(e.target.value)} autoComplete="username" className="w-full bg-dark-900 border border-slate-800 rounded-xl py-2 pl-9 pr-3 text-xs text-slate-100 font-mono focus:outline-none focus:border-gold-500/60" />
             </div>
           </div>
 
@@ -55,7 +55,7 @@ export default function AdminLoginPage() {
             <label className="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-1.5">Password</label>
             <div className="relative">
               <Key className="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2" />
-              <input type="password" required value={password} onChange={e => setPassword(e.target.value)} className="w-full bg-dark-900 border border-slate-800 rounded-xl py-2 pl-9 pr-3 text-xs text-slate-100 font-mono focus:outline-none focus:border-gold-500/60" />
+              <input type="password" required value={password} onChange={e => setPassword(e.target.value)} autoComplete="new-password" className="w-full bg-dark-900 border border-slate-800 rounded-xl py-2 pl-9 pr-3 text-xs text-slate-100 font-mono focus:outline-none focus:border-gold-500/60" />
             </div>
           </div>
 
