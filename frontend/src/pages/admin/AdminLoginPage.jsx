@@ -7,7 +7,7 @@ import { ShieldCheck, Mail, Key, LogIn, Lock } from 'lucide-react';
 
 export default function AdminLoginPage() {
   const [email, setEmail] = useState('admin@campustrack.edu');
-  const [password, setPassword] = useState('Admin@123');
+  const [password, setPassword] = useState('Campus@Admin2026!');
   const [loading, setLoading] = useState(false);
   const { login } = useAuth();
   const { success, error } = useToast();

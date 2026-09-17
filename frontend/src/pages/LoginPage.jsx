@@ -34,12 +34,12 @@ export default function LoginPage() {
   // 1-Click Viva Demo Helpers
   const fillStudentDemo = () => {
     setEmail('student@campustrack.edu');
-    setPassword('Student@123');
+    setPassword('Campus@Track2026!');
   };
 
   const fillAdminDemo = () => {
     setEmail('admin@campustrack.edu');
-    setPassword('Admin@123');
+    setPassword('Campus@Admin2026!');
   };
 
   return (
